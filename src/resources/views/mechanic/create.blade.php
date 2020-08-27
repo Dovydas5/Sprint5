@@ -5,14 +5,22 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">CREATE</div>
+                    <div class="card-header">Mechanics</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{route('mechanic.store')}}">
-                            Name: <input type="text" name="mechanic_name">
-                            Surname: <input type="text" name="mechanic_surname">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text"  class="form-control" name="mechanic_name">
+                                <small class="form-text text-muted">Mechanic name</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Surname</label>
+                                <input type="text" class="form-control"  name="mechanic_surname">
+                                <small class="form-text text-muted">Mechanic surname</small>
+                            </div>
                             @csrf
-                            <button type="submit">ADD</button>
+                            <button class="btn btn-primary" type="submit">ADD</button>
                         </form>                    </div>
                 </div>
             </div>

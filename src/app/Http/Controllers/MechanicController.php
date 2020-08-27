@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mechanic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MechanicController extends Controller
 {
@@ -39,13 +40,26 @@ class MechanicController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(),
+            [
+                'mechanic_name' => ['required', 'min:3', 'max:64'],
+                'mechanic_surname' => ['required', 'min:3', 'max:64'],
+            ]
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
         $mechanic = new Mechanic;
         $mechanic->name = $request->mechanic_name;
         $mechanic->surname = $request->mechanic_surname;
         $mechanic->save();
         return redirect()->route('mechanic.index')->with('success_message', 'Sekmingai įrašytas.');
 
+
     }
+
 
     /**
      * Display the specified resource.
@@ -79,6 +93,16 @@ class MechanicController extends Controller
      */
     public function update(Request $request, Mechanic $mechanic)
     {
+        $validator = Validator::make($request->all(),
+            [
+                'mechanic_name' => ['required', 'min:3', 'max:64'],
+                'mechanic_surname' => ['required', 'min:3', 'max:64'],
+            ]
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
         $mechanic->name = $request->mechanic_name;
         $mechanic->surname = $request->mechanic_surname;
         $mechanic->save();
@@ -96,7 +120,7 @@ class MechanicController extends Controller
     public function destroy(Mechanic $mechanic)
     {
         if($mechanic->mechanicTrucks->count()){
-            return redirect()->route('mechanic.index')->with('info_message', 'Trinti negalima, nes turi knygų.');        }
+            return redirect()->route('mechanic.index')->with('info_message', 'Trinti negalima, nes turi priskirta sunkvezimiu.');        }
         $mechanic->delete();
         return redirect()->route('mechanic.index')->with('success_message', 'Sekmingai ištrintas.');
 

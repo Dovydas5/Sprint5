@@ -6,26 +6,26 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">CREATE trucks</div>
+                    <div class="card-header">Create new Truck</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{route('truck.store')}}">
                             <div class="form-group">
-                                <label>Title</label>
+                                <label>Model</label>
                                 <input type="text"  class="form-control" name="truck_maker">
-                                <small class="form-text text-muted">Knygos pavadinimas.</small>
+                                <small class="form-text text-muted">Truck model</small>
                             </div>
                             <div class="form-group">
-                                <label>Title</label>
+                                <label>Plate</label>
                                 <input type="text"  class="form-control" name="truck_plate">
-                                <small class="form-text text-muted">Knygos pavadinimas.</small>
+                                <small class="form-text text-muted">Truck plate</small>
                             </div>
                             <div class="form-group">
-                                <label>Title</label>
+                                <label>Year</label>
                                 <input type="text" class="form-control"  name="truck_make_year">
-                                <small class="form-text text-muted">Knygos pavadinimas.</small>
+                                <small class="form-text text-muted">Truck year</small>
                             </div>
-                            <textarea name="book_about" id="summernote"></textarea>
+                            <textarea name="truck_mechanic_notices" id="summernote"></textarea>
                             <select class="form-control" name="mechanic_id">
                                 @foreach ($mechanics as $mechanic)
                                     <option value="{{$mechanic->id}}">{{$mechanic->name}} {{$mechanic->surname}}</option>

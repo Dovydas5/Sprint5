@@ -6,27 +6,27 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">EDIT trucks</div>
+                    <div class="card-header">Edit Trucks</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{route('truck.update',[$truck])}}">
                             <div class="form-group">
-                                <label>Modelis</label>
+                                <label>Model</label>
                                 <input type="text" name="truck_maker" class="form-control" value="{{$truck->maker}}">
-                                <small class="form-text text-muted">Knygos pavadinimas.</small>
+                                <small class="form-text text-muted">Truck Model</small>
                             </div>
                             <div class="form-group">
-                                <label>numeris</label>
+                                <label>Plate</label>
                                 <input type="text" name="truck_plate" class="form-control" value="{{$truck->plate}}">
-                                <small class="form-text text-muted">Knygos pavadinimas.</small>
+                                <small class="form-text text-muted">Plate</small>
                             </div>
                             <div class="form-group">
-                                <label>Metai</label>
+                                <label>Year</label>
                                 <input type="text" name="truck_make_year" class="form-control" value="{{$truck->make_year}}">
-                                <small class="form-text text-muted">Knygos pavadinimas.</small>
+                                <small class="form-text text-muted">Truck year</small>
                             </div>
-                            <textarea name="book_about" id="summernote">{{$truck->mechanic_notices}}</textarea>
-                            <select name="mechanic_id">
+                            <textarea name="truck_mechanic_notices" id="summernote">{{$truck->mechanic_notices}}</textarea>
+                            <select class="form-control" name="mechanic_id">
                                 @foreach ($mechanics as $mechanic)
                                     <option value="{{$mechanic->id}}" @if($mechanic->id == $truck->author_id) selected @endif>
                                         {{$mechanic->name}} {{$mechanic->surname}}
@@ -34,7 +34,7 @@
                                 @endforeach
                             </select>
                             @csrf
-                            <button type="submit">EDIT</button>
+                            <button class="btn btn-primary" type="submit">EDIT</button>
                         </form>                    </div>
                 </div>
             </div>
