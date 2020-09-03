@@ -15,7 +15,7 @@ class MechanicController extends Controller
      */
     public function index()
     {
-        $mechanics = Mechanic::all();
+        $mechanics = Mechanic::orderBy('name', 'asc')->get();
         return view('mechanic.index', ['mechanics' => $mechanics]);
 
 

@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -9,14 +8,35 @@
                     <div class="card-header">All Trucks</div>
 
                     <div class="card-body">
-                        @foreach ($trucks as $truck)
-                            <a href="{{route('truck.edit',[$truck])}}">Truck name: {{$truck->maker}} <br> Mechanic: {{$truck->truckMechanic->name}} {{$truck->truckMechanic->surname}}</a>
-                            <form method="POST" action="{{route('truck.destroy', [$truck])}}">
-                                @csrf
-                                <button class="btn btn-danger"type="submit">DELETE</button>
-                            </form>
-                            <br>
-                        @endforeach                    </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <tr>
+                                    <th>Truck maker</th>
+                                    <th>Plate number</th>
+                                    <th>Year</th>
+                                    <th>Mechanic name</th>
+                                    <th>Actions</th>
+                                </tr>
+                                @foreach ($trucks as $truck)
+                                    <tr>
+                                        <td>{{$truck->maker}}</td>
+                                        <td>{{$truck->plate}}</td>
+                                        <td>{{$truck->make_year}}</td>
+                                        <td>{{$truck->truckMechanic->name}}</td>
+                                        <td>
+                                            <form method="POST" action="{{route('truck.destroy', [$truck])}}">
+                                                <a class="btn btn-success"
+                                                   href="{{route('truck.edit',[$truck])}}">EDIT</a>
+                                                @csrf
+                                                <button class="btn btn-danger" type="submit">DELETE</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                        <br>
+                    </div>
                 </div>
             </div>
         </div>

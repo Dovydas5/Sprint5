@@ -14,9 +14,9 @@ class TruckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trucks = Truck::all();
+        $trucks = Truck::orderBy('make_year')->get();
         return view('truck.index', ['trucks' => $trucks]);
     }
 

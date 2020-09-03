@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::middleware(['auth'])->group(function(){
 Route::group(['prefix' => 'mechanics'], function(){
     Route::get('', 'MechanicController@index')->name('mechanic.index');
     Route::get('create', 'MechanicController@create')->name('mechanic.create');
@@ -41,5 +41,5 @@ Route::group(['prefix' => 'trucks'], function(){
     Route::post('/delete/{truck}', 'TruckController@destroy')->name('truck.destroy');
     Route::get('show/{truck}', 'TruckController@show')->name('truck.show');
 });
-
+});
 

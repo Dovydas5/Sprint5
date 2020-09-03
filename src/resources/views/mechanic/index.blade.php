@@ -7,14 +7,28 @@
                     <div class="card-header">All Mechanics</div>
 
                     <div class="card-body">
-                        @foreach ($mechanics as $mechanic)
-                            <a href="{{route('mechanic.edit',[$mechanic])}}">Mechanic Name: {{$mechanic->name}}<br> Mechanic Surname: {{$mechanic->surname}}</a>
-                            <form method="POST" action="{{route('mechanic.destroy', [$mechanic])}}">
-                                @csrf
-                                <button class="btn btn-danger"  type="submit">DELETE</button>
-                            </form>
-                            <br>
-                        @endforeach                    </div>
+                        <table class="table">
+                            <tr>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th>Actions</th>
+                            </tr>
+                            @foreach ($mechanics as $mechanic)
+                                <tr>
+                                    <td>{{$mechanic->name}}</td>
+                                    <td>{{$mechanic->surname}}</td>
+                                    <td>
+                                        <form method="POST" action="{{route('mechanic.destroy', [$mechanic])}}">
+                                            <a class="btn btn-success"
+                                               href="{{route('mechanic.edit',[$mechanic])}}">EDIT</a>
+                                            @csrf
+                                            <button class="btn btn-danger" type="submit">DELETE</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
