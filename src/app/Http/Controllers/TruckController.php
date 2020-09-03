@@ -16,8 +16,18 @@ class TruckController extends Controller
      */
     public function index(Request $request)
     {
-        $trucks = Truck::orderBy('make_year')->get();
-        return view('truck.index', ['trucks' => $trucks]);
+
+//        $trucks = Truck::orderBy('make_year')->get();
+        $mechanics = Mechanic::all();
+        $selectId = 0;
+        if ($request->mechanic_id) {
+            $trucks = Truck::where('mechanic_id', $request->mechanic_id)->orderBy('maker')->get();
+            $selectId = $request->mechanic_id;
+        } else {
+            $trucks = Truck::orderBy('maker')->get();
+        }
+        return view('truck.index', compact('trucks', 'mechanics', 'selectId'));
+//        return view('truck.index', ['trucks' => $trucks]);
     }
 
     /**
@@ -72,7 +82,8 @@ class TruckController extends Controller
      */
     public function show(Truck $truck)
     {
-        //
+        return view('truck.show', compact('truck'));
+
     }
 
     /**
